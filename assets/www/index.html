@@ -2,30 +2,33 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        	<link rel="stylesheet" type="text/css" href="css/index.css" />
 		<title>Add Contacts</title>
 		<script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
-   		</head>
+   	</head>
 	
 
    
         <script type="text/javascript" charset="utf-8">
+        
    		document.addEventListener("deviceready",deviceIsReady, false);
-   function deviceIsReady()
-   {
+   		
+   	function deviceIsReady()
+   	{
    		document.getElementById("svButton").addEventListener("click",addContact,false);
    		alert("READY");
-  }
-   function addContact()
-   {
+  	}
+   	function addContact()
+   	{
    		
    		var fullName = document.getElementById("first").value+ " " + document.getElementById("last").value;
    		var theContact = navigator.contacts.create({"displayName": fullName});
    		theContact.save();
    		alert("ADDED!");
-   }
-</script>   	
-<body onload="deviceIsReady()">
+   	}
+	</script>   
+	
+   <body onload="deviceIsReady()">
        <h1>Hello World</h1>
        
        <form>
