@@ -7,8 +7,12 @@
 		<script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
    		</head>
 	
-
-   
+		<style>
+			#randomstyle
+			{
+				color: gray;
+			}
+   		</style>
         <script type="text/javascript" charset="utf-8">
    		document.addEventListener("deviceready",deviceIsReady, false);
    function deviceIsReady()
@@ -24,16 +28,36 @@
    		theContact.save();
    		alert("ADDED!");
    }
+   
+   function alertMe()
+   {
+   	//alertmsg = "Height" + document.smilyface.height + "\nWidth" document.smilyface.width;
+   	alert("My height is " + document.smilyface.height + "\n My width is " + document.smilyface.width);
+   	return true;
+   }
+   
+  /* function modifyImg()
+   {
+   	document.getElementById("smilyface").style.height="30%";
+   	document.getElementById("smilyface").style.width="30%";
+   	return true;
+   }*/
+   
+
 </script>   	
-<body onload="deviceIsReady()">
+<body onload="deviceIsReady();">
        <h1>Hello World</h1>
        
        <form>
+       	<p>Create a contact</p><br>
        	<label for="first">First</label><br>
        	<input type="text" id="first"/><br>
        	<label for="last">Last</label><br>
        	<input type="text" id="last"/><br>
        	<input type="button" value="Save Contact" id ="svButton"/>
+       	<br>
+       	<p>CLICK MY FACE</p>
+        <img src = "smileyface.jpg" id = "smilyface" onClick = "alertMe()" name = "smilyface">
        	</form>
    </body>
 </html>
