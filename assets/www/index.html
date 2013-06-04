@@ -4,19 +4,14 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         	<link rel="stylesheet" type="text/css" href="css/index.css" />
 		<title>Add Contacts</title>
-		<script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
-   	</head>
+		<script type="text/javascript" charset="utf-8" src="cordova-2.7.0.js"></script>
+		<script src="http://www.google.com/jsapi?key=AIzaSyA5m1Nc8ws2BbmPRwKu5gFradvD_hgq6G0" type="text/javascript"></script>
+   
 	
-		<style>
-			#randomstyle
-			{
-				color: gray;
-			}
-   		</style>
-        <script type="text/javascript" charset="utf-8">
+        <script type="text/javascript">
         
-   		document.addEventListener("deviceready",deviceIsReady, false);
-   		
+   		//document.addEventListener("deviceready",deviceIsReady, false);
+   	/*	
    	function deviceIsReady()
    	{
    		document.getElementById("svButton").addEventListener("click",addContact,false);
@@ -43,19 +38,53 @@
    	document.getElementById("secondp").style.visibility=(document.sampform.secondpara.checked)? "visible" : "hidden";
 	return true;
    }
-   
-  /* function modifyImg()
-   {
-   	document.getElementById("smilyface").style.height="30%";
-   	document.getElementById("smilyface").style.width="30%";
-   	return true;
-   }*/
-   
+   */
+   google.load("feeds", "1");
+    
+    // Our callback function, for when a feed is loaded.
+    function feedLoaded(result) {
+      if (!result.error) {
+        // Grab the container we will put the results into
+        var container = document.getElementById("content");
+    	container.innerHTML = '';
+    
+        // Loop through the feeds, putting the titles onto the page.
+        // Check out the result object for a list of properties returned in each entry.
+        // http://code.google.com/apis/ajaxfeeds/documentation/reference.html#JSON
+        for (var i = 0; i < result.feed.entries.length; i++) {
+          var entry = result.feed.entries[i];
+          var newPara = document.createElement("p");
+          var newLink = document.createElement("a");
+          newLink.setAttribute('href',entry.link);
+          newLink.appendChild(document.createTextNode(entry.title));
+          newPara.appendChild(newLink);
+          //div.appendChild(document.createTextNode("<a href=\""+entry.link+"\">"+entry.title+"</a>"));
+          container.appendChild(newPara);
+         // container.appendChild("<br>");
+        }
+      }
+    }
+    
+    function OnLoad() {
+      // Create a feed instance that will grab Digg's feed.
+      var feed = new google.feeds.Feed("http://www.geico.com/rss/");
+    
+      // Calling load sends the request off.  It requires a callback function.
+      feed.load(feedLoaded);
+    }
+    
+    google.setOnLoadCallback(OnLoad);
+   </script>
 
-</script>   	
+</head>
+  
+<body style="font-family: Arial;border: 0 none;">
+   <div id="content">Loading...</div> 
+  </body>
+
 	
-   <body onload="deviceIsReady()">
-       <h1>Hello World</h1>
+   <!--<body onload="deviceIsReady()">-->
+       <!--<h1>Hello World</h1>
        
        	<p>Create a contact</p><br>
        	<label for="first">First</label><br>
@@ -74,7 +103,13 @@
         <form name = "sampform">
         	<input type = "checkbox" name = "firstpara" onClick="showpara();"/>Show first paragraph<br>
         	<input type = "checkbox" name = "secondpara" onClick="showpara();" />Show second paragraph<br>
-        </form>
+        </form>-->
+        
+        <h1>GEICO Gecko Laughing Fit</h1>
+        <center><iframe width="560" height="315" src="http://www.youtube.com/embed/tRTUxP0_NM8" frameborder="0" allowfullscreen></iframe></center>
+		<br>
+		<h1>GEICO Gecko Has A Flat Tire</h1>
+		<center><iframe width="560" height="315" src="http://www.youtube.com/embed/4njS23NvzPU" frameborder="0" allowfullscreen></iframe></center>
 
    </body>
 </html>
