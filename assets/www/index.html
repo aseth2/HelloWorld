@@ -6,23 +6,13 @@
 		<title>Add Contacts</title>
 		<script type="text/javascript" charset="utf-8" src="cordova-2.7.0.js"></script>
 		<script src="http://www.google.com/jsapi?key=AIzaSyA5m1Nc8ws2BbmPRwKu5gFradvD_hgq6G0" type="text/javascript"></script>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true&amp;libraries=places">
-</script> 
 		<script type="text/javascript" charset="utf-8">
 		google.load("feeds", "1");
-		google.maps.event.addDomListener(window, 'load', setup);
 		
 		var pictureSource;   // picture source
     var destinationType; // sets the format of returned value 
 var watchID = null;
- 
- var request = { location: myLocation, radius: currentRadiusValue, types: [currentPlaceType] }; 
- var service = new google.maps.places.PlacesService(map); 
-service.nearbySearch(request, callback);
-    // Wait for Cordova to connect with the device
-    //
-    function setup()
-    {
+
     document.addEventListener("deviceready",onDeviceReady,false);
 
 
@@ -34,21 +24,10 @@ service.nearbySearch(request, callback);
         destinationType=navigator.camera.DestinationType;
         document.getElementById("svButton").addEventListener("click",addContact,false);
    		alert("READY");
-  	}
+  	//}
   	}
   	
-  	function createMarker(place) {
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
-	map: map,
-	position: place.geometry.location
-    }); 
-}
-infowindow  = new google.maps.InfoWindow();
-google.maps.event.addListener(marker, 'click', function () {
-	infowindow.setContent(place.name);
-	infowindow.open(map, this);
-});
+
    	function addContact()
    	{
    		
@@ -130,15 +109,6 @@ google.maps.event.addListener(marker, 'click', function () {
 
     // onSuccess: Get a snapshot of the current acceleration
     //
-    function onSuccess2(position) { 
-    var myLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-    map  = new google.maps.Map(document.getElementById('geoLocation'), {
-	mapTypeId: google.maps.MapTypeId.ROADMAP,
-	center: myLocation,
-	zoom: 15
-    }); 
-}
     function onSuccess(acceleration) {
         var element = document.getElementById('accelerometer');
         element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
@@ -152,12 +122,14 @@ google.maps.event.addListener(marker, 'click', function () {
 
     // onError: Failed to get the acceleration
     //
+    
     function onError() {
         alert('onError!');
     }
 
-    
+
 	google.setOnLoadCallback(OnLoad);
+	    
     </script>
   </head>
   <body>
